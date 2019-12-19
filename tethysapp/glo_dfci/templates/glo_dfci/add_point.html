@@ -1,0 +1,51 @@
+{% extends "glo_dfci/base.html" %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+
+
+
+{% block app_content %}
+<style>
+    #map {
+        height: 350px;
+        width: 100%;
+        position: relative;
+    }
+    /*remove*/
+    /*{*/
+    /*    float:right;*/
+    /*    display:block;*/
+    /*    margin:5px;*/
+    /*}*/
+</style>
+<h3>Add a point</h3>
+<div id="message" class="alert alert-danger hidden" role="alert"></div>
+<div id="map" class="map"></div>
+<div id="mouse-position"></div>
+<div class="hidden"><b>Map Interaction</b>
+    <select id="interaction-type" class="btn btn-xs btn-primary" data-width="fit">
+        <option value="Point">Point</option>
+    </select></div>
+<input type="text" name="point-lat-lon" id="point-lat-lon" hidden>
+{% gizmo lon_lat_input %}
+{% gizmo select_layer_input %}
+{% gizmo  attribute_input %}
+<p><b>The attribute input should follow the following format attribute:value separated by a comma.</b></p>
+{% gizmo select_meta_input %}
+{% gizmo  add_meta_button %}
+<div style="height: 1em;">
+
+</div>
+<form id='meta-group' name='meta-group' class='meta-group'>
+
+</form>
+<div style="height: 1em;">
+
+</div>
+{% gizmo  add_button %}
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'glo_dfci/js/add_point.js' %}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "glo_dfci/base.html" %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+
+
+
+{% block app_content %}
+
+<h3>Add REST Endpoint</h3>
+<div id="message" class="alert alert-danger hidden" role="alert"></div>
+{% gizmo name_input %}
+{% gizmo endpoint_input %}
+<p><b>Example WFS Endpoint: <i>https://gs-us-prim-green6.csr.utexas.edu/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite%3Aqpf24hr_day1_latest&outputFormat=application%2Fjson</i></b></p>
+<p><b>Example WMS Endpoint: <i>https://gs-us-prim-green6.csr.utexas.edu/geoserver/wms</i></b></p>
+{% gizmo endpoint_type %}
+<div class="wfs_layer hidden">
+    <label>
+        Select Fill Color
+    </label>
+    <input class="jscolor" value="ab2567" name="polygon-fill" id="polygon-fill" style="width: 100%">
+    {% gizmo fill_opacity %}
+    <label>
+        Select Stroke Color
+    </label>
+    <input class="jscolor" value="ab2567" name="polygon-stroke" id="polygon-stroke" style="width: 100%">
+    {% gizmo stroke_width %}
+</div>
+<div class="wms_layer hidden">
+    {% gizmo wms_layers_input %}
+    <p><b>Example Layer: <i>cite:qpf48hr_day6_7_latest</i></b></p>
+</div>
+
+{% gizmo add_button %}
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'glo_dfci/js/add_endpoint.js' %}" type="text/javascript"></script>
+{% endblock %}

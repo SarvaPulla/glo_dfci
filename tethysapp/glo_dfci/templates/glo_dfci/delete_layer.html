@@ -1,0 +1,26 @@
+{% extends "glo_dfci/base.html" %}
+{% load tethys_gizmos %}
+{% load staticfiles %}
+
+
+
+{% block app_content %}
+<h3>Delete Layer</h3>
+<div id="message" class="alert alert-danger hidden" role="alert"></div>
+{% gizmo  layer_select_input %}
+
+{% gizmo select_counties_input %}
+
+<p><b>Note: Not selecting a county will delete the layer for all the counties.</b></p>
+
+<div style="height: 1em;">
+
+</div>
+{% gizmo delete_button %}
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'glo_dfci/js/delete_layer.js' %}" type="text/javascript"></script>
+{% endblock %}
